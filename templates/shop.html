@@ -99,7 +99,7 @@
     <div class="site-section">
       <div class="container">
         
-        <div class="row">
+        {% comment %} <div class="row">
           <div class="col-lg-6">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
             <div id="slider-range" class="border-primary"></div>
@@ -118,77 +118,14 @@
               <a class="dropdown-item" href="#">Price, high to low</a>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
     
         <div class="row">
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
             <span class="tag">Sale</span>
             <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Bioderma</a></h3>
-            <p class="price"><del>95.00</del> &mdash; $55.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Chanca Piedra</a></h3>
-            <p class="price">$70.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_03.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Umcka Cold Care</a></h3>
-            <p class="price">$120.00</p>
-          </div>
-    
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-    
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Cetyl Pure</a></h3>
-            <p class="price"><del>45.00</del> &mdash; $20.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_05.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">CLA Core</a></h3>
-            <p class="price">$38.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_06.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Poo Pourri</a></h3>
-            <p class="price"><del>$89</del> &mdash; $38.00</p>
-          </div>
-
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Bioderma</a></h3>
-            <p class="price"><del>95.00</del> &mdash; $55.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Chanca Piedra</a></h3>
-            <p class="price">$70.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img ˀsrc="{% static 'images/product_03.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Umcka Cold Care</a></h3>
-            <p class="price">$120.00</p>
-          </div>
-          
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-          
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Cetyl Pure</a></h3>
-            <p class="price"><del>45.00</del> &mdash; $20.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_05.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">CLA Core</a></h3>
-            <p class="price">$38.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_06.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">Poo Pourri</a></h3>
-            <p class="price"><del>$89</del> &mdash; $38.00</p>
+            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">{{item1.name}}</a></h3>
+            <p class="price">$55.00</p>
           </div>
         </div>
         <div class="row mt-5">
