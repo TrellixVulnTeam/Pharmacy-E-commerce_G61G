@@ -53,7 +53,7 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'shop' %}">Store</a></li>
                 <li class="has-children">
-                  <a href="#">Dropdown</a>
+                  <a href="#">Drugs</a>
                   <ul class="dropdown">
                     <li><a href="#">Supplements</a></li>
                     <li class="has-children">
@@ -70,8 +70,16 @@
 
                   </ul>
                 </li>
+                {% comment %} <li class="has-children">
+                  <a href="{% url 'register' %}">Register/Login</a>
+                  <ul class="dropdown">
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li> 
+                  </ul>
+                </li> {% endcomment %}
                 <li class="active"><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
               </ul>
             </nav>
           </div>
@@ -321,7 +329,7 @@
           <div class="col-md-12">
             <p>
               Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
+              <script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i> by <a href="{% url 'index' %}"
                 class="text-primary">| WELLNESS PHARMA</a>
             </p>
           </div>
