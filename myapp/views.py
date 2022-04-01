@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Item
+from .models import Product
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -45,9 +45,9 @@ def logoutUser(request):
     return redirect('login')
 
 def index(request):
-    items = Item.objects.all()
+    products = Product.objects.all()
     
-    return render(request, 'index.html', {'items': items})
+    return render(request, 'index.html', {'products': products})
 
 def about(request):
     return render(request, 'about.html')
