@@ -53,7 +53,7 @@
                 <li class="active"><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'shop' %}">Store</a></li>
                 <li class="has-children">
-                  <a">Drugs</a>
+                  <a>Drugs</a>
                   <ul class="dropdown">
                     <li><a href="#">Pain Relief</a></li>
                     <li><a href="#">Oral Care</a></li>
@@ -160,10 +160,10 @@
 
         
         <div class="row">
-          {% for product in products|slice:":6" %}
+          {% for product in products|slice:"12:21" %}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'product_details' product.slug product.id %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'product_details' %}">{{product.name}}</a></h3>
+            <a href="{% url 'product_details' product.id %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
+            <h3 class="text-dark"><a href="{% url 'product_details' product.id %}">{{product.name}}</a></h3>
             <p class="price">PRICE: GHS {{product.price}}</p>
           </div>
           {% endfor %}
@@ -188,11 +188,11 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
-              {% for new_product in new_products|slice:":8" %}
+              {% for product in products|slice:":8" %}
               <div class="text-center item mb-4">
-                <a href="{% url 'product_details' %}"> <img src="{{new_product.image.url}}" width="270" height="370" alt="Image"></a>
-                <h3 class="text-dark"><a href="{% url 'product_details' %}">{{new_product.name}}</a></h3>
-                <p class="price">PRICE: GHS {{new_product.price}}</p>
+                <a href="{% url 'product_details' product.id %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
+                <h3 class="text-dark"><a href="{% url 'product_details' product.id %}">{{product.name}}</a></h3>
+                <p class="price">PRICE: GHS {{product.price}}</p>
               </div>
               {% endfor %}
             </div>

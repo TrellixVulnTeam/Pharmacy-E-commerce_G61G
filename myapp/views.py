@@ -45,11 +45,9 @@ def logoutUser(request):
     return redirect('login')
 
 def index(request):
-    products = Product.objects.all().order_by('?')
-    new_products = Product.objects.all()
+    products = Product.objects.all()
     
-    return render(request, 'index.html', {'products': products,
-                                          'new_products': new_products})
+    return render(request, 'index.html', {'products': products})
 
 def about(request):
     return render(request, 'about.html')
@@ -70,10 +68,10 @@ def shop(request):
     return render(request, 'shop.html', {'products': products})
 
 @login_required(login_url='login')
-def product_details(request, slug, id):
+def product_details(request, id):
     #Fetching product using id
-    product = Product.objects.filter(id=id)
-    return render(request, 'product_details.html', {'product': product})
+    products = Product.objects.filter(id=id)
+    return render(request, 'product_details.html', {'products': products})
 
 @login_required(login_url='login')
 def thankyou(request):

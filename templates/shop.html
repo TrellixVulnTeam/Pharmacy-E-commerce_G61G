@@ -105,8 +105,8 @@
         <div class="row">
           {% for product in products%}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{% url 'product_details' %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'product_details' %}">{{product.name}}</a></h3>
+            <a href="{% url 'product_details' product.id %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
+            <h3 class="text-dark"><a href="{% url 'product_details' product.id %}">{{product.name}}</a></h3>
             <p class="price">PRICE: GHS {{product.price}}</p>
           </div>
           {% endfor %}
