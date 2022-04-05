@@ -53,7 +53,7 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li class="active"><a href="{% url 'shop' %}">Store</a></li>
                 <li class="has-children">
-                  <a href="#">Drugs</a>
+                  <a>Drugs</a>
                   <ul class="dropdown">
                     <li><a href="#">Pain Relief</a></li>
                     <li><a href="#">Oral Care</a></li>
@@ -102,34 +102,14 @@
     <div class="site-section">
       <div class="container">
         
-        {% comment %} <div class="row">
-          <div class="col-lg-6">
-            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-            <div id="slider-range" class="border-primary"></div>
-            <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
-          </div>
-          <div class="col-lg-6">
-            <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Reference</h3>
-            <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference"
-              data-toggle="dropdown">Reference</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-              <a class="dropdown-item" href="#">Relevance</a>
-              <a class="dropdown-item" href="#">Name, A to Z</a>
-              <a class="dropdown-item" href="#">Name, Z to A</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Price, low to high</a>
-              <a class="dropdown-item" href="#">Price, high to low</a>
-            </div>
-          </div>
-        </div> {% endcomment %}
-    
         <div class="row">
+          {% for product in products%}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="{% url 'shopsingle' %}"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="{% url 'shopsingle' %}">{{item1.name}}</a></h3>
-            <p class="price">$55.00</p>
+            <a href="{% url 'product_details' %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
+            <h3 class="text-dark"><a href="{% url 'product_details' %}">{{product.name}}</a></h3>
+            <p class="price">PRICE: GHS {{product.price}}</p>
           </div>
+          {% endfor %}
         </div>
         <div class="row mt-5">
           <div class="col-md-12 text-center">
