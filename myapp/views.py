@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator, EmptyPage
 
 from django.contrib.auth.decorators import login_required
 
@@ -65,7 +66,11 @@ def contact(request):
 
 def shop(request):
     products = Product.objects.all()
-    return render(request, 'shop.html', {'products': products})
+    product_paginator = Paginator(products, 9)
+    page_num = request.GET.get('page', 1)
+    page = product_paginator.get_page(page_num)
+    
+    return render(request, 'shop.html', {'products': page})
 
 @login_required(login_url='login')
 def product_details(request, id):
