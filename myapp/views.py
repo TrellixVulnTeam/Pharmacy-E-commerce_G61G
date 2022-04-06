@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Product
+from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -55,11 +55,21 @@ def about(request):
 
 @login_required(login_url='login')
 def cart(request):
-    return render(request, 'cart.html')
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderitem_set.all()
+    
+    context = {'items': items, 'order': order}
+    return render(request, 'cart.html', context)
 
 @login_required(login_url='login')
 def checkout(request):
-    return render(request, 'checkout.html')
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderitem_set.all()
+    
+    context = {'items': items, 'order': order}
+    return render(request, 'checkout.html', context)
 
 def contact(request):
     return render(request, 'contact.html')
