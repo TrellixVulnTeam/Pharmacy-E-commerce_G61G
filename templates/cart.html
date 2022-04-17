@@ -22,6 +22,27 @@
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <script type="text/javascript">
+    var user = '{{request.user}}';
+
+    function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getToken('csrftoken');
+  </script>
+
 </head>
 
 <body>
@@ -82,7 +103,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="{% url 'cart' %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">{{cartItems}}</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -131,18 +152,18 @@
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                          <button data-product={{item.product.id}} data-action='remove' class="btn btn-outline-primary js-btn-minus update-cart" type="button">&minus;</button>
                         </div>
                         <input type="text" class="form-control text-center" value="{{item.quantity}}" placeholder=""
                           aria-label="Example text with button addon" aria-describedby="button-addon1">
                         <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                          <button data-product={{item.product.id}} data-action="add" class="btn btn-outline-primary js-btn-plus update-cart" type="button">&plus;</button>
                         </div>
                       </div>
     
                     </td>
                     <td>GHS {{item.get_total|floatformat:2}}</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                    <td><a data-product={{item.product.id}} data-action='delete' class="btn btn-primary height-auto btn-sm update-cart">X</a></td>
                   </tr>
                 </tbody>
                 {% endfor %}
@@ -154,11 +175,11 @@
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
+              {% comment %} <div class="col-md-6 mb-3 mb-md-0">
                 <button class="btn btn-primary btn-md btn-block">Update Cart</button>
-              </div>
+              </div> {% endcomment %}
               <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
+                <button class="btn btn-outline-primary btn-md btn-block"><a href="{% url 'shop' %}" class="js-logo-clone">Continue Shopping</a></button>
               </div>
             </div>
             {% comment %} <div class="row">
@@ -299,6 +320,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 </body>
 

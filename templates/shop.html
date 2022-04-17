@@ -22,6 +22,27 @@
 
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+  <script type="text/javascript">
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getToken('csrftoken');
+  </script>
+  
 </head>
 
 <body>
@@ -82,7 +103,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="{% url 'cart' %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">{{cartItems}}</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -108,6 +129,7 @@
             <a href="{% url 'product_details' product.id %}"> <img src="{{product.image.url}}" width="270" height="370" alt="Image"></a>
             <h3 class="text-dark"><a href="{% url 'product_details' product.id %}">{{product.name}}</a></h3>
             <p class="price">PRICE: GHS {{product.price|floatformat:2}}</p>
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
           </div>
           {% endfor %}
         </div>
@@ -228,6 +250,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 </body>
 
