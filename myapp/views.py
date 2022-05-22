@@ -10,7 +10,6 @@ import json
 from django.contrib.auth.decorators import login_required
 
 
-
 # Registration
 def register(request):
     if request.user.is_authenticated:
@@ -27,6 +26,9 @@ def register(request):
         
         context = {'form': form}
         return render(request, 'register.html', context)
+
+def apilogin(request):
+    return render(request, 'apilogin.html')
 
 def loginPage(request):
     if request.method == 'POST':
