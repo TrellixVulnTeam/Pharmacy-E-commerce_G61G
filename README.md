@@ -9,3 +9,6 @@ TO BEGIN THIS PROJECT
 3. Activate virtual environment "myvenv\scripts\activate"
 4. Install dependencies "pip install -r requirements.txt"
 5. Run "python manage.py runserver"
+
+Watch Video on the front end
+https://loom.com/share/e327a8c3b17d46c7807967ceef81d868
